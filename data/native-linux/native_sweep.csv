@@ -1,0 +1,10 @@
+ngl,tps,note
+0,1.34,vram=653MB
+12,1.61,vram=653MB
+24,2.09,vram=653MB
+36,3.21,vram=653MB
+44,4.32,vram=653MB
+48,,FAIL: rc=1
+52,,FAIL: rc=1
+56,,FAIL: rc=1
+64,,FAIL: rc=1

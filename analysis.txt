@@ -1,0 +1,80 @@
+========================================================================
+LOCAL (RTX 3050 Ti 4GB) — engine x model, conc=1 decode tok/s
+========================================================================
+model           llamacpp    ollama      vllm
+l31-8b-q2          18.57      9.13         -
+l31-8b-q4           7.18         -         -
+l32-1b-q4          90.75     90.64         -
+l32-1b-q5          84.41      84.8         -
+l32-1b-q8          74.66     50.16         -
+qw25-15b-fp16          -         -     38.88
+qw25-3b-q2         36.35     36.76         -
+qw25-3b-q4         38.14     31.98         -
+qw25-3b-q8         30.96     12.83         -
+
+failed cases: [('ollama', 'l31-8b-q4'), ('vllm', 'l32-1b-fp16'), ('ollama', 'l31-8b-q4'), ('vllm', 'qw25-15b-fp16'), ('ollama', 'l31-8b-q4')]
+
+========================================================================
+CLOUD (RTX 3090 24GB) vs LOCAL — llamacpp conc=1
+========================================================================
+model           3050 tps  3090 tps  ratio 3050 tok/J 3090 tok/J
+l31-8b-q2           18.6     111.1    6.0       0.62       0.33
+l31-8b-q4            7.2     115.0   16.0       0.25       0.34
+l32-1b-q4           90.8     393.0    4.3       3.09       1.26
+l32-1b-q5           84.4     380.2    4.5       2.87       1.23
+l32-1b-q8           74.7     327.0    4.4       2.53       1.03
+qw25-3b-q2          36.4     165.7    4.6       1.22       0.51
+qw25-3b-q4          38.1     171.3    4.5       1.28       0.52
+qw25-3b-q8          31.0     137.4    4.4       1.04       0.42
+
+cloud ollama conc=1 (incl. 8B-Q4 that local ollama cannot serve):
+  l31-8b-q2: 107.65 tps, 6320 MB
+  l31-8b-q4: 112.77 tps, 7864 MB
+  l32-1b-q4: 342.31 tps, 2668 MB
+  l32-1b-q5: 310.34 tps, 2766 MB
+  l32-1b-q8: 269.12 tps, 3156 MB
+  qw25-3b-q2: 150.01 tps, 2674 MB
+  qw25-3b-q4: 160.5 tps, 3298 MB
+  qw25-3b-q8: 126.75 tps, 4849 MB
+  vllm qw25-15b-fp16 conc=1: 173.98 tps, agg 172.43
+  vllm qw25-15b-fp16 conc=2: 157.24 tps, agg 310.66
+  vllm qw25-15b-fp16 conc=4: 152.3 tps, agg 599.73
+
+========================================================================
+RQ3 OFFLOAD (8B-Q4, 4.6GB model on 4GB VRAM), conc=1
+========================================================================
+  ngl=  0:   7.18 tps, TTFT 1.58s, 4.8W, 749MB, util 0.0%
+  ngl=  8:   6.24 tps, TTFT 1.26s, 8.8W, 1933MB, util 28.6%
+  ngl= 16:    8.2 tps, TTFT 0.918s, 14.0W, 3047MB, util 32.0%
+  ngl= 20:   8.82 tps, TTFT 0.693s, 15.4W, 3597MB, util 34.3%
+  ngl= 24:  13.23 tps, TTFT 0.453s, 19.5W, 3899MB, util 35.9%
+  ngl= 28:  12.84 tps, TTFT 0.307s, 29.4W, 3907MB, util 56.1%
+  ngl= 32:   8.62 tps, TTFT 0.189s, 29.2W, 3901MB, util 84.0%
+  ngl= 99:   7.14 tps, TTFT 0.208s, 29.0W, 3901MB, util 98.1%
+
+========================================================================
+RQ2 QUALITY (wikitext-2 ppl, 60 chunks; comparable within family only)
+========================================================================
+  l32-1b-q4    ppl 15.2751 +/- 0.35097
+  l32-1b-q5    ppl 14.8660 +/- 0.34165
+  l32-1b-q8    ppl 14.7640 +/- 0.33865
+  qw25-3b-q2   ppl 11.1233 +/- 0.25048
+  qw25-3b-q4   ppl 8.6890 +/- 0.18476
+  qw25-3b-q8   ppl 8.4574 +/- 0.17878
+  l31-8b-q2    ppl 10.0283 +/- 0.19557
+  l31-8b-q4    ppl 7.6173 +/- 0.14784
+
+========================================================================
+RQ4 $/Mtok (assumptions: $0.15/kWh; 3090 secure $0.46/hr)
+========================================================================
+local (electricity only) + cloud rental, per model, llamacpp conc=4 agg:
+  l31-8b-q2      local elec $0.027/Mtok (47 agg tps @ 30W) | 3090 rental $0.50/Mtok (255 agg tps)
+  l31-8b-q4      local elec $0.051/Mtok (24 agg tps @ 30W) | 3090 rental $0.47/Mtok (271 agg tps)
+  l32-1b-q4      local elec $0.006/Mtok (207 agg tps @ 30W) | 3090 rental $0.15/Mtok (861 agg tps)
+  l32-1b-q5      local elec $0.006/Mtok (204 agg tps @ 30W) | 3090 rental $0.15/Mtok (870 agg tps)
+  l32-1b-q8      local elec $0.006/Mtok (225 agg tps @ 30W) | 3090 rental $0.14/Mtok (902 agg tps)
+  qw25-3b-q2     local elec $0.015/Mtok (84 agg tps @ 30W) | 3090 rental $0.33/Mtok (387 agg tps)
+  qw25-3b-q4     local elec $0.015/Mtok (85 agg tps @ 30W) | 3090 rental $0.32/Mtok (395 agg tps)
+  qw25-3b-q8     local elec $0.013/Mtok (94 agg tps @ 30W) | 3090 rental $0.32/Mtok (405 agg tps)
+
+API reference (verify current prices): GPT-4o-mini $0.60/Mtok out, Gemini-2.0-Flash $0.40/Mtok out

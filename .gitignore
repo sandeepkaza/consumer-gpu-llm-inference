@@ -1,0 +1,22 @@
+# paper-only assets (not part of the reproducible artifact)
+paper.tex
+paper.pdf
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.synctex.gz
+fig_*.pdf
+fig_*.png
+*.original.md
+# python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+# scratch
+*.tmp
+# downloadable model weights (multi-GB, not part of repro artifact)
+models/
+# compiled paper PDF (title-named) — not part of artifact
+*.pdf

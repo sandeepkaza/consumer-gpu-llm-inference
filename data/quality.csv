@@ -1,0 +1,9 @@
+model,file,ppl,ppl_err,chunks,wall_s
+l32-1b-q4,Llama-3.2-1B-Instruct-Q4_K_M.gguf,15.2751,0.35097,60,163.5
+l32-1b-q5,Llama-3.2-1B-Instruct-Q5_K_M.gguf,14.8660,0.34165,60,93.7
+l32-1b-q8,Llama-3.2-1B-Instruct-Q8_0.gguf,14.7640,0.33865,60,121.6
+qw25-3b-q2,Qwen2.5-3B-Instruct-Q2_K.gguf,11.1233,0.25048,60,144.4
+qw25-3b-q4,Qwen2.5-3B-Instruct-Q4_K_M.gguf,8.6890,0.18476,60,184.9
+qw25-3b-q8,Qwen2.5-3B-Instruct-Q8_0.gguf,8.4574,0.17878,60,326.9
+l31-8b-q2,Meta-Llama-3.1-8B-Instruct-Q2_K.gguf,10.0283,0.19557,60,311.3
+l31-8b-q4,Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf,7.6173,0.14784,60,612.5

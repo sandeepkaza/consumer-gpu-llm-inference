@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this dataset or code, please cite it as below."
+title: "Inference at the Edge of VRAM: A Floor-and-Ceiling Measurement of Consumer-GPU LLM Serving"
+abstract: "Floor-and-ceiling measurement of consumer-GPU LLM serving across the VRAM edge: engine collapse, quantization, offload, and energy, plus a native-Linux offload replication."
+type: dataset
+authors:
+  - family-names: "Kaza"
+    given-names: "Venkata Sandeep Chowdary"
+    email: "sandeep.kaza@gmail.com"
+    orcid: "https://orcid.org/0009-0001-9454-8995"
+license: MIT
+date-released: 2026-07-24
+keywords:
+  - reproducible-measurement
+  - empirical-software-engineering
+# DOI added after Zenodo upload:
+# doi: 10.5281/zenodo.XXXXXXXX

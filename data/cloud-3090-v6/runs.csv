@@ -1,0 +1,4 @@
+testbed,engine,engine_ver,model,ngl,conc,n_ok,n_err,load_s,ttft_med_s,decode_tps_med,agg_tps,wall_s,power_mean_w,power_max_w,vram_max_mb,util_mean,ts
+NVIDIA-GeForce-RTX-3090,vllm,vllm/vllm-openai:v0.6.3,qw25-15b-fp16,99,1,12,0,112.4,0.012,173.98,172.43,17.7,319.7,334.7,22606,82.1,2026-07-19T10:44:55
+NVIDIA-GeForce-RTX-3090,vllm,vllm/vllm-openai:v0.6.3,qw25-15b-fp16,99,2,12,0,112.4,0.013,157.24,310.66,9.8,307.0,335.2,22621,85.6,2026-07-19T10:45:05
+NVIDIA-GeForce-RTX-3090,vllm,vllm/vllm-openai:v0.6.3,qw25-15b-fp16,99,4,12,0,112.4,0.013,152.3,599.73,5.1,303.8,306.1,22867,86.7,2026-07-19T10:45:10
