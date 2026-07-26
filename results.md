@@ -83,14 +83,17 @@ assumption; API prices July 2026, MUST be re-verified before publish.
 
 - Local electricity-only cost is ~100× under API list prices; even with
   hardware amortization ~4-20×. 3090 rental lands 2-4× under APIs.
-- **Energy efficiency inversion**: 3050 floor delivers 2.4-2.5× more
-  tokens/joule than the 3090 on models that fit (1B: 3.09 vs 1.26 tok/J);
-  the ceiling only wins tok/J at 8B Q4 (0.34 vs 0.25) where the floor
-  thrashes. Small-model inference is MOST energy-efficient on the consumer
-  floor.
-- Floor→ceiling speedup: uniform ~4.3-4.6× when the model fits; 16× at
-  8B Q4 (the cliff); 3090 ollama serves 8B Q4 at 112.8 tok/s (7.9GB VRAM)
-  — the local failure is purely a VRAM-boundary artifact.
+- **Energy efficiency inversion**: 3050 floor delivers 2.3-2.5× more
+  tokens/joule than the 3090 on models COMFORTABLY inside 4GB — 1B/3B, all
+  ≤3.7GB (1B Q4: 3.09 vs 1.26 tok/J; 1B Q5 is the low end at 2.33×). The
+  advantage narrows at the edge (8B Q2, 3.8GB: only 1.91×, 0.62 vs 0.33)
+  and the ceiling only wins tok/J at 8B Q4 (0.34 vs 0.25) where the floor
+  thrashes. Efficiency advantage is a function of HEADROOM, not just model
+  size. Small-model inference is MOST energy-efficient on the consumer floor.
+- Floor→ceiling speedup: uniform ~4.3-4.6× for models comfortably inside
+  VRAM; 5.98× at 8B Q2 (edge); 16× at 8B Q4 (the cliff); 3090 ollama serves
+  8B Q4 at 112.8 tok/s (7.9GB VRAM) — the local failure is purely a
+  VRAM-boundary artifact.
 
 ## Incidents (paper's own evidence of the compat tax — cross-cites Paper 9)
 - vllm/vllm-openai:v0.9.2 (CUDA 12.8 base) refused by container toolkit on

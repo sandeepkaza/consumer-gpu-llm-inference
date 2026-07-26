@@ -1,5 +1,21 @@
-% NOT web-verified by tooling. The author must open and read every entry
-% before submission (see the pre-submission gate in paper.tex).
+% Web-verified 2026-07-26 against ACM DL / arXiv / MLSys / IEEE Xplore.
+% Corrections applied that run:
+%   - dettmers2023case, merity2017wikitext, samsi2023words: all were @article
+%     with a conference name in the journal field (ICML, ICLR, HPEC).
+%     Retyped @inproceedings with booktitle; HPEC DOI added.
+%   - lin2024awq: author list was missing four authors (Chen, Wang, Xiao,
+%     Gan). Full ten-author list restored; MLSys 2024 Best Paper noted.
+%   - kwon2023vllm: verified (SOSP 2023, pp. 611-626); DOI added.
+%   - frantar2023gptq: NOTE ADDED — the ICLR 2023 proceedings publish this
+%     under the title "OPTQ", not "GPTQ". The title here is the arXiv one
+%     (2210.17323). Decide which form the target venue wants.
+%   - llamacpp / gguf: URLs pointed at github.com/ggerganov/... The repos moved
+%     org and are now github.com/ggml-org/llama.cpp and .../ggml. Updated.
+%     (Paper 9's own mined issue data already uses ggml-org/llama.cpp, so the
+%     two papers previously disagreed on the repo name.) The author field
+%     correctly still names Georgi Gerganov - the person did not change, the
+%     GitHub organisation did.
+% URL check 2026-07-26: all cited URLs in this file resolve.
 
 @inproceedings{kwon2023vllm,
   author    = {Kwon, Woosuk and Li, Zhuohan and Zhuang, Siyuan and
@@ -8,13 +24,15 @@
   title     = {Efficient Memory Management for Large Language Model Serving
                with PagedAttention},
   booktitle = {Proc.\ ACM Symposium on Operating Systems Principles (SOSP)},
-  year      = {2023}
+  year      = {2023},
+  pages = {611--626},
+  doi = {10.1145/3600006.3613165}
 }
 
 @misc{llamacpp,
   author       = {Gerganov, Georgi and {llama.cpp contributors}},
   title        = {llama.cpp: LLM inference in C/C++ (server build b5343, commit 62d4250e)},
-  howpublished = {\url{https://github.com/ggerganov/llama.cpp}},
+  howpublished = {\url{https://github.com/ggml-org/llama.cpp}},
   year         = {2026},
   note         = {GGUF quantization; version pinned for this study}
 }
@@ -26,11 +44,11 @@
   year         = {2026}
 }
 
-@article{dettmers2023case,
-  author  = {Dettmers, Tim and Zettlemoyer, Luke},
-  title   = {The Case for 4-bit Precision: k-bit Inference Scaling Laws},
-  journal = {Proc.\ International Conference on Machine Learning (ICML)},
-  year    = {2023}
+@inproceedings{dettmers2023case,
+  author    = {Dettmers, Tim and Zettlemoyer, Luke},
+  title     = {The Case for 4-bit Precision: k-bit Inference Scaling Laws},
+  booktitle = {Proc.\ 40th International Conference on Machine Learning (ICML)},
+  year      = {2023}
 }
 
 @inproceedings{frantar2023gptq,
@@ -39,35 +57,37 @@
   title     = {{GPTQ}: Accurate Post-Training Quantization for Generative
                Pre-trained Transformers},
   booktitle = {Proc.\ International Conference on Learning Representations (ICLR)},
-  year      = {2023}
+  year      = {2023},
+  note = {Published in the ICLR 2023 proceedings under the title "OPTQ"; widely cited as GPTQ (arXiv:2210.17323)}
 }
 
 @inproceedings{lin2024awq,
-  author    = {Lin, Ji and Tang, Jiaming and Tang, Haotian and Yang, Shang and
-               Dang, Xingyu and Han, Song},
+  author    = {Lin, Ji and Tang, Jiaming and Tang, Haotian and Yang, Shang and Chen, Wei-Ming and Wang, Wei-Chen and Xiao, Guangxuan and Dang, Xingyu and Gan, Chuang and Han, Song},
   title     = {{AWQ}: Activation-aware Weight Quantization for {LLM}
                Compression and Acceleration},
   booktitle = {Proc.\ Machine Learning and Systems (MLSys)},
-  year      = {2024}
+  year      = {2024},
+  note = {MLSys 2024 Best Paper Award}
 }
 
-@article{merity2017wikitext,
+@inproceedings{merity2017wikitext,
   author  = {Merity, Stephen and Xiong, Caiming and Bradbury, James and
              Socher, Richard},
   title   = {Pointer Sentinel Mixture Models},
-  journal = {Proc.\ International Conference on Learning Representations (ICLR)},
-  year    = {2017},
-  note    = {WikiText-2 dataset}
+  booktitle = {Proc.\ International Conference on Learning Representations (ICLR)},
+  year      = {2017},
+  note      = {Source of the WikiText-2 dataset}
 }
 
-@article{samsi2023words,
+@inproceedings{samsi2023words,
   author  = {Samsi, Siddharth and Zhao, Dan and McDonald, Joseph and Li, Baolin
              and Michaleas, Adam and Jones, Michael and Bergeron, William and
              Kepner, Jeremy and Tiwari, Devesh and Gadepally, Vijay},
   title   = {From Words to Watts: Benchmarking the Energy Costs of Large
              Language Model Inference},
-  journal = {IEEE High Performance Extreme Computing Conference (HPEC)},
-  year    = {2023}
+  booktitle = {Proc.\ IEEE High Performance Extreme Computing Conference (HPEC)},
+  year      = {2023},
+  doi       = {10.1109/HPEC58863.2023.10363447}
 }
 
 @misc{nvidiacontainer,
@@ -80,6 +100,6 @@
 @misc{gguf,
   author       = {Gerganov, Georgi and {GGML contributors}},
   title        = {GGUF File Format Specification},
-  howpublished = {\url{https://github.com/ggerganov/ggml}},
+  howpublished = {\url{https://github.com/ggml-org/ggml}},
   year         = {2026}
 }
